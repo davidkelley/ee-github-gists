@@ -3,8 +3,6 @@ const nock = require('nock');
 const faker = require('faker');
 const { handler } = require('../index');
 
-process.env.AWS_REGION = 'eu-west-1';
-
 describe('#handler', () => {
   const username = faker.internet.userName();
 

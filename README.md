@@ -14,22 +14,45 @@ If you are being notified by email of any new Public Gists, you will additionall
 
 To reduce potential costs, these notifications are not sent via SMS.
 
-## Manual Deployment
+## Local/Manual Cloud Deployment
 
 If you **do not** want to use the Quick Launch. First follow the [Install](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) guide for setting up the AWS CLI Tools. Once the CLI tools have been configured, you can deploy the service by executing the following command from inside the directory the repository was cloned into:
 
 ```bash
 aws cloudformation deploy --template-file cloudformation.yml \
-  --stack-name <STACK-NAME> \
+  --stack-name <STACK_NAME> \
   --capabilities CAPABILITY_IAM \
   --parameter-overrides \
-      Destination=<EMAIL OR PHONE NUMBER> \
-      Username=<GITHUB USERNAME>
+      Destination=<EMAIL_OR_PHONE_NUMBER> \
+      Username=<GITHUB_USERNAME>
 ```
+
+---
 
 ## Development
 
 Once you have cloned the repository, ensure that [Node LTS (v8.11.1)][node-lts] is installed before running `npm install` inside the directory the repository was cloned into.
+
+### Run Locally
+
+Once dependencies have been installed, you can run the script using:
+
+```
+node run.js --username <GITHUB_USERNAME>
+```
+
+Optionally append `--notify` to see a system notification displayed natively using your OS.
+
+### Local Notifications
+
+You can install the script to notify hourly for a specific GitHub username, via cron using OS Notifications, using the following commands:
+
+* To install: `sudo npm run cron:install <GITHUB_USERNAME>`
+* To uninstall: `sudo npm run cron:uninstall`
+
+### Linting
+
+ESLint is executed against AirBnB Javascript coding style guidelines. Any changes can be linted using `npm run lint`.
 
 ### Run tests
 

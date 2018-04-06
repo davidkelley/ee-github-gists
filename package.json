@@ -6,7 +6,9 @@
     "node": ">=8.10"
   },
   "dependencies": {
-    "aws-sdk": "^2.221.1"
+    "aws-sdk": "^2.221.1",
+    "minimist": "^1.2.0",
+    "node-notifier": "^5.2.1"
   },
   "devDependencies": {
     "aws-sdk-mock": "^1.7.0",
@@ -24,14 +26,18 @@
   "jest": {
     "moduleFileExtensions": [
       "js"
-    ]
+    ],
+    "setupTestFrameworkScriptFile": "<rootDir>/__tests__/__utils__/setup.js"
   },
   "pre-commit": [
     "lint",
     "test"
   ],
   "scripts": {
-    "lint": "eslint index.js __tests__",
-    "test": "NODE_ENV=test jest __tests__/.+/*.test.js --notify"
+    "lint": "eslint *.js __tests__",
+    "test": "NODE_ENV=test jest __tests__/.+/*.test.js --notify",
+    "cron:init": "(echo \"0 0 1 1 * exit\") | crontab -",
+    "cron:install": "f(){ (crontab -l ; echo \"* * * * * `which node` `pwd`/run.js --username $1 --notify >> /tmp/gist.log 2>&1\") | crontab - ;};f",
+    "cron:uninstall": "crontab -l | grep -v \"`pwd`/run.js\" | crontab -"
   }
 }

@@ -79,6 +79,7 @@ Resources:
           const https = require('https');
           const AWS = require('aws-sdk');
           const URL = require('url');
+          const { AWS_EXECUTION_ENV: aws } = process.env;
 
           const publish = (TopicArn, data) => {
             const Subject = `User "${data[0].owner.login}" has ${data.length} new Gists.`;
@@ -91,7 +92,7 @@ Resources:
           const send = ({ topicArn }, cb, raw) => {
             const data = JSON.parse(raw);
             const finish = () => cb(null, data);
-            if (data.length === 0) return finish();
+            if (data.length === 0 || !aws) return finish();
             publish(topicArn, data).then(finish).catch(cb);
           };
 
