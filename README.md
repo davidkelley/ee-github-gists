@@ -1,12 +1,23 @@
-## Brief
+## New Gists Notifier
 
 > Using the GitHub API you should query a user’s publicly available GitHub gists. The script should then tell you when a new gist has been published.
 
-You can launch this project with one click on AWS:
+---
+
+## Deploying
+
+You can deploy/run this project in a few different ways:
+
+* Install into cron locally
+* Run manually
+* Deploy to AWS using the `Quick Launch` button below.
+* Manually using the AWS CLI tools
+
+### Quick Launch on AWS
+
+You can launch this project with one click:
 
 [![Launch Stack][image]][stack]
-
----
 
 Once deployed, this project uses CloudFormation to deploy a Lambda function, written in NodeJS, automatically invoked at a specific interval (of your own choosing). The function will notify you of any additional Public Gists that have been created since the last invocation, by either Email or SMS.
 
@@ -14,7 +25,7 @@ If you are being notified by email of any new Public Gists, you will additionall
 
 To reduce potential costs, these notifications are not sent via SMS.
 
-## Local/Manual Cloud Deployment
+### Manual AWS Deployment
 
 If you **do not** want to use the Quick Launch. First follow the [Install](https://docs.aws.amazon.com/cli/latest/userguide/installing.html) guide for setting up the AWS CLI Tools. Once the CLI tools have been configured, you can deploy the service by executing the following command from inside the directory the repository was cloned into:
 
@@ -27,13 +38,9 @@ aws cloudformation deploy --template-file cloudformation.yml \
       Username=<GITHUB_USERNAME>
 ```
 
----
-
-## Development
+### Run Locally
 
 Once you have cloned the repository, ensure that [Node LTS (v8.11.1)][node-lts] is installed before running `npm install` inside the directory the repository was cloned into.
-
-### Run Locally
 
 Once dependencies have been installed, you can run the script using:
 
@@ -43,12 +50,18 @@ node run.js --username <GITHUB_USERNAME>
 
 Optionally append `--notify` to see a system notification displayed natively using your OS.
 
-### Local Notifications
+### Install into cron
+
+Once you have cloned the repository, ensure that [Node LTS (v8.11.1)][node-lts] is installed before running `npm install` inside the directory the repository was cloned into.
 
 You can install the script to notify hourly for a specific GitHub username, via cron using OS Notifications, using the following commands:
 
 * To install: `sudo npm run cron:install <GITHUB_USERNAME>`
 * To uninstall: `sudo npm run cron:uninstall`
+
+## Development
+
+Once you have cloned the repository, ensure that [Node LTS (v8.11.1)][node-lts] is installed before running `npm install` inside the directory the repository was cloned into.
 
 ### Linting
 
