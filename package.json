@@ -1,0 +1,37 @@
+{
+  "name": "ee-github-gists",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": ">=8.10"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.221.1"
+  },
+  "devDependencies": {
+    "aws-sdk-mock": "^1.7.0",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-import-resolver-babel-module": "^4.0.0",
+    "eslint-plugin-import": "^2.10.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "faker": "~4.1.0",
+    "jest": "^23.0.0-alpha.0",
+    "json-dereference-cli": "^0.1.2",
+    "nock": "^9.2.3"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js"
+    ]
+  },
+  "pre-commit": [
+    "lint",
+    "test"
+  ],
+  "scripts": {
+    "lint": "eslint index.js __tests__",
+    "test": "NODE_ENV=test jest __tests__/.+/*.test.js --notify"
+  }
+}

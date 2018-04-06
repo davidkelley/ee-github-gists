@@ -1,0 +1,9 @@
+{
+  "rules": {
+    "object-curly-newline": "off"
+  },
+  "extends": "airbnb",
+  "env": {
+    "jest": true
+  }
+}
