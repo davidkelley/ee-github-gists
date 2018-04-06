@@ -37,7 +37,7 @@
     "lint": "eslint *.js __tests__",
     "test": "NODE_ENV=test jest __tests__/.+/*.test.js --notify",
     "cron:init": "(echo \"0 0 1 1 * exit\") | crontab -",
-    "cron:install": "f(){ (crontab -l ; echo \"* * * * * `which node` `pwd`/run.js --username $1 --notify >> /tmp/gist.log 2>&1\") | crontab - ;};f",
+    "cron:install": "f(){ (crontab -l ; echo \"0 * * * * `which node` `pwd`/run.js --username $1 --notify >> /tmp/gist.log 2>&1\") | crontab - ;};f",
     "cron:uninstall": "crontab -l | grep -v \"`pwd`/run.js\" | crontab -"
   }
 }
